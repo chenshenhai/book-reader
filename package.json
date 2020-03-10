@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/chenshenhai/book-reader/issues"
   },
-  "homepage": "https://github.com/chenshenhai/book-reader#readme"
+  "homepage": "https://github.com/chenshenhai/book-reader#readme",
+  "dependencies": {
+    "koa": "^2.11.0"
+  }
 }
