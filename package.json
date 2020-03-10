@@ -1,0 +1,23 @@
+{
+  "name": "book-reader",
+  "version": "0.0.1",
+  "description": "gitbook reader",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chenshenhai/book-reader.git"
+  },
+  "keywords": [
+    "gitbook",
+    "reader"
+  ],
+  "author": "chenshenhai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chenshenhai/book-reader/issues"
+  },
+  "homepage": "https://github.com/chenshenhai/book-reader#readme"
+}
