@@ -25,7 +25,9 @@
   },
   "homepage": "https://github.com/chenshenhai/book-reader#readme",
   "dependencies": {
-    "koa": "^2.11.0"
+    "koa": "^2.11.0",
+    "koa-ejs": "^4.3.0",
+    "koa-send": "^5.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
