@@ -1,3 +1,5 @@
 module.exports = {
-  baseDir: ""
+  baseDir: "",
+  port: 3002,
+  main: "",
 }
