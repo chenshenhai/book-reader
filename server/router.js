@@ -5,14 +5,6 @@ const config = require('./../config');
 const Reader = require('./../server/lib/reader');
 const router = new Router();
 
-// router.get('/', async (ctx, next) => {
-//   await ctx.render('index', {
-//     title: 'my-title',
-//     content: 'my-content',
-//     name: JSON.stringify(config),
-//   });
-// });
-
 router.get('/', async (ctx, next) => {
   const bookDir = path.join(config.baseDir, config.main);
   const reader = new Reader({ bookDir });
@@ -23,6 +15,30 @@ router.get('/', async (ctx, next) => {
     name: JSON.stringify(config),
   });
 });
+
+const paramCount = 4;
+function loopRouterGet(count) {
+  const limit = 10;
+  for (let i = 0; i < count; i ++) {
+    if (count > limit) {
+      break;
+    }
+    const paramKeys = [];
+    for (let j = 0; j < i + 1; j++) {
+      paramKeys.push(`param${j}`);
+    }
+    const pagePath = `/:${paramKeys.join('/:')}`
+    router.get(pagePath, async (ctx, next) => {
+      await ctx.render('index', {
+        title: 'my-title',
+        content: JSON.stringify(ctx.params),
+        name: JSON.stringify(config),
+      });
+    });
+  }
+}
+
+loopRouterGet(paramCount);
 
 
 module.exports = router;
