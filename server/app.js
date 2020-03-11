@@ -1,9 +1,10 @@
+
 const path = require('path');
 const Koa = require('koa');
 const render = require('koa-ejs');
 const koaStatic = require('./middlewares/static');
 const app = new Koa();
-
+const config = require("./../config");
 
 app.use(koaStatic(
   path.join(__dirname , '..', 'static'),
@@ -24,7 +25,7 @@ app.use(async (ctx) => {
   if (ctx.path === '/') {
     await ctx.render('index', {
       title: 'my-title',
-      name: 'my-name',
+      name: JSON.stringify(config),
     });
   }
 });
