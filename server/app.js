@@ -14,7 +14,6 @@ render(app, {
   cache: false,
   // debug: true
 });
-
 app.use(koaStatic(
   path.join(__dirname , '..', 'static'),
   {
