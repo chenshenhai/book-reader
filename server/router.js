@@ -11,8 +11,7 @@ router.get('/', async (ctx, next) => {
   const result = reader.getReadme();
   await ctx.render('index', {
     title: 'my-title',
-    content: JSON.stringify(result),
-    name: JSON.stringify(config.main),
+    content: result.content,
   });
 });
 
@@ -36,7 +35,6 @@ function loopRouterGet(count) {
       await ctx.render('index', {
         title: 'my-title',
         content: JSON.stringify(ctx.params),
-        name: JSON.stringify(config.main),
       });
     });
   }

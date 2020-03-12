@@ -1,8 +1,13 @@
 <link rel="stylesheet" href="/dist/css/index.css" />
-<div>
-  <p class="name"><%= name %></p>
-  <div>
-    <%= content %>
+
+<textarea id="J_PageMarkdown" style="display: none;">
+  <%= content %>
+</textarea>
+
+<div class="page-container">
+  <!-- <div class="page-header"></div> -->
+  <div class="page-content" id="J_PageContent">
+    Loading...
   </div>
 </div>
-<!-- <script src="/dist/js/index.js"></script> -->
+<script src="/dist/js/index.js"></script>
