@@ -1,12 +1,14 @@
 import marked from 'marked';
 import highlight from 'highlight.js';
 import { getPageMarkdown, renderContent } from './page';
+
+import 'highlight.js/styles/github.css';
 import "./../css/index.less";
 
 marked.setOptions({
   renderer: new marked.Renderer(),
   highlight: function(code) {
-    highlight.highlightAuto(code).value;
+    return highlight.highlightAuto(code).value;
   },
   pedantic: false,
   gfm: true,
@@ -20,7 +22,6 @@ marked.setOptions({
 
 function main() {
   const md = getPageMarkdown();
-  console.log('md = ', md)
   const html = marked(md);
   renderContent(html);
 }

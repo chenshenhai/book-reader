@@ -15,7 +15,7 @@ router.get('/', async (ctx, next) => {
   });
 });
 
-const paramCount = 4;
+const paramCount = 6;
 function loopRouterGet(count) {
   const limit = 10;
   for (let i = 0; i < count; i ++) {
@@ -28,13 +28,15 @@ function loopRouterGet(count) {
     }
     const pagePath = `/:${paramKeys.join('/:')}`
     router.get(pagePath, async (ctx, next) => {
-      // const bookName = ctx.params['param0'];
-      // const bookDir = path.join(config.baseDir, config.main);
-      // const reader = new Reader({ bookDir });
-      // const result = reader.getReadme();
+      const ctxPath = ctx.path.replace(/[\.]{2,}/ig, '');
+      const bookName = ctx.params['param0'];
+      const bookDir = path.join(config.baseDir, bookName);
+      const reader = new Reader({ bookDir });
+      const bookPagePath = ctxPath.replace(`/${bookName}/`, '/');
+      const result = reader.getPage(bookPagePath);
       await ctx.render('index', {
         title: 'my-title',
-        content: JSON.stringify(ctx.params),
+        content: result.content,
       });
     });
   }

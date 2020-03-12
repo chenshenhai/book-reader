@@ -1,6 +1,6 @@
 const path = require('path');
 const fs = require('fs');
-const NEED_CACHE = true;
+// const NEED_CACHE = true;
 
 class Reader {
   /**
@@ -35,7 +35,8 @@ class Reader {
   }
 
   getPage(pagePath) {
-    const filePath = path.join(this.__opts.baseDir, pagePath);
+    pagePath = pagePath.replace(/[\.]{2,}/ig, '');
+    const filePath = path.join(this.__opts.bookDir, `${pagePath}.md`);
     const reuslt = this.__getFile(filePath);
     return reuslt;
   }
