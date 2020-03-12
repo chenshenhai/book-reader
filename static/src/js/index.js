@@ -2,8 +2,7 @@ import marked from 'marked';
 import highlight from 'highlight.js';
 import { getPageMarkdown, renderContent } from './page';
 
-import 'highlight.js/styles/github.css';
-import "./../css/index.less";
+import './../css/index.less';
 
 marked.setOptions({
   renderer: new marked.Renderer(),
