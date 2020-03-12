@@ -29,10 +29,14 @@ function loopRouterGet(count) {
     }
     const pagePath = `/:${paramKeys.join('/:')}`
     router.get(pagePath, async (ctx, next) => {
+      // const bookName = ctx.params['param0'];
+      // const bookDir = path.join(config.baseDir, config.main);
+      // const reader = new Reader({ bookDir });
+      // const result = reader.getReadme();
       await ctx.render('index', {
         title: 'my-title',
         content: JSON.stringify(ctx.params),
-        name: JSON.stringify(config),
+        name: JSON.stringify(config.main),
       });
     });
   }
