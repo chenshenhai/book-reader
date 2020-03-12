@@ -3,6 +3,7 @@ const cfork = require('cfork');
 
 cfork({
   exec: './server/worker.js',
+  count: 6
 })
 .on('fork', worker => {
   console.warn('[%s] [worker:%d] new worker start', Date(), worker.process.pid);

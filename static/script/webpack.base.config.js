@@ -21,6 +21,10 @@ module.exports = {
     path: distResolve(''),
     filename: 'js/[name].js'
   },
+  externals: {
+    'marked': 'marked',
+    'highlight.js': 'hljs'
+  },
   module: {
     rules: [
       {
