@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:server": "nodemon server/start.js",
+    "dev:server": "nodemon server/worker.js",
     "start:server": "node server/start.js",
     "dev:static": "webpack --watch --config ./static/script/webpack.dev.config.js",
     "build:static": "webpack --config ./static/script/webpack.prod.config.js"
@@ -38,6 +38,7 @@
     "@babel/preset-env": "^7.8.7",
     "babel-loader": "^8.0.6",
     "babel-plugin-import": "^1.13.0",
+    "cfork": "^1.8.0",
     "chalk": "^3.0.0",
     "compression-webpack-plugin": "^3.1.0",
     "css-loader": "^3.4.2",
