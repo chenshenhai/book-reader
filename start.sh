@@ -2,4 +2,4 @@ cnpm install
 
 npm run build:static
 
-npm run start:server
+nohup npm run start:server &

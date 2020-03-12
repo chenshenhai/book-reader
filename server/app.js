@@ -25,7 +25,7 @@ app.use(router.routes());
 
 function startAsync() {
   app.listen(config.port, () => {
-    console.log('the server is start')
+    console.log(`the server is start prot: ${config.port}`)
   })
 }
 
