@@ -1,7 +1,6 @@
 import marked from 'marked';
 import highlight from 'highlight.js';
 import { getPageMarkdown, renderContent } from './page';
-
 import './../css/index.less';
 
 marked.setOptions({
