@@ -12,7 +12,7 @@ router.get('/', async (ctx, next) => {
   await ctx.render('index', {
     title: 'my-title',
     content: JSON.stringify(result),
-    name: JSON.stringify(config),
+    name: JSON.stringify(config.main),
   });
 });
 
