@@ -1,7 +1,7 @@
 import { getPageConfig } from './page';
 
 const config = getPageConfig();
-function isInnerUrl(url) {
+function isInnerPage(url) {
   let result = false;
   if (url.startsWith('//') || url.startsWith('https://') || url.startsWith('http://')) {
     let baseUrl = url.replace(/^https\:\/\//, '').replace(/^http\:\/\//, '').replace(/\/\//, '');
@@ -32,7 +32,7 @@ function initProxyLink() {
 
 function linkEvent(a) {
   const href = a.getAttribute('href');
-  console.log('isInnerUrl = ', isInnerUrl(href));
+  console.log('isInnerPage = ', isInnerPage(href));
 }
 
 function initRouter() {
