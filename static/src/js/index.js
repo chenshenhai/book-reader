@@ -1,6 +1,5 @@
 import marked from 'marked';
 import highlight from 'highlight.js';
-
 import { getPageMarkdown, renderContent } from './page';
 import './../css/index.less';
 
@@ -27,4 +26,4 @@ function main() {
 
 main();
 
-console.log('hello world');
+console.log('hello world 22');

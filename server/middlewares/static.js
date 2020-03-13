@@ -49,7 +49,11 @@ function serve (root, opts) {
 
       if (ctx.path.startsWith(opts.prefix || '/') && (ctx.method === 'HEAD' || ctx.method === 'GET')) {
         try {
-          ctx.set('cache-control', `public, max-age=${opts.maxAge || defaultOpts.maxAge}`);
+          if (opts.maxAge > 0) {
+            ctx.set('cache-control', `public, max-age=${opts.maxAge}`);
+          } else {
+            ctx.set('cache-control', `no-cache`);
+          }
           done = await send(ctx, ctx.path, opts)
         } catch (err) {
           if (err.status !== 404) {
@@ -72,7 +76,11 @@ function serve (root, opts) {
     if (ctx.body != null || ctx.status !== 404) return // eslint-disable-line
 
     try {
-      ctx.set('cache-control', `public, max-age=${opts.maxAge || defaultOpts.maxAge}`);
+      if (opts.maxAge > 0) {
+        ctx.set('cache-control', `public, max-age=${opts.maxAge}`);
+      } else {
+        ctx.set('cache-control', `no-cache`);
+      }
       await send(ctx, ctx.path, opts)
     } catch (err) {
       if (err.status !== 404) {

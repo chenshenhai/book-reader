@@ -15,9 +15,9 @@ render(app, {
   // debug: true
 });
 app.use(koaStatic(
-  path.join(__dirname , '..', 'static'),
-  {
-    prefix: '/dist/'
+  path.join(__dirname , '..', 'static'), {
+    prefix: '/dist/',
+    maxAge: process.env.NODE_ENV !== 'production' ? -1 : 365 * 24 * 60 * 60 * 1000
   }
 ));
 app.use(router.routes());

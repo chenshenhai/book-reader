@@ -1,5 +1,6 @@
 const util = require('util');
 const cfork = require('cfork');
+process.env.NODE_ENV = 'production';
 
 cfork({
   exec: './server/worker.js',
