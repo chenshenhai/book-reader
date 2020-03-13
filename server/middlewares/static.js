@@ -12,6 +12,10 @@ const { resolve } = require('path')
 const assert = require('assert')
 const send = require('koa-send')
 
+const defaultOpts = {
+  maxAge: 365 * 24 * 60 * 60 * 1000
+}
+
 /**
  * Expose `serve()`.
  */
@@ -23,6 +27,8 @@ module.exports = serve
  *
  * @param {String} root
  * @param {Object} [opts]
+ *        opts.maxAge {number}
+ *        opts.prefix {string}
  * @return {Function}
  * @api public
  */
@@ -43,6 +49,7 @@ function serve (root, opts) {
 
       if (ctx.path.startsWith(opts.prefix || '/') && (ctx.method === 'HEAD' || ctx.method === 'GET')) {
         try {
+          ctx.set('cache-control', `public, max-age=${opts.maxAge || defaultOpts.maxAge}`);
           done = await send(ctx, ctx.path, opts)
         } catch (err) {
           if (err.status !== 404) {
@@ -65,6 +72,7 @@ function serve (root, opts) {
     if (ctx.body != null || ctx.status !== 404) return // eslint-disable-line
 
     try {
+      ctx.set('cache-control', `public, max-age=${opts.maxAge || defaultOpts.maxAge}`);
       await send(ctx, ctx.path, opts)
     } catch (err) {
       if (err.status !== 404) {
