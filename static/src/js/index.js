@@ -1,6 +1,7 @@
 import marked from 'marked';
 import highlight from 'highlight.js';
-import { getPageMarkdown, renderContent } from './page';
+import { getPageMarkdown, renderContent } from './lib/page';
+import { initRouter } from './lib/router';
 import './../css/index.less';
 
 marked.setOptions({
@@ -22,6 +23,7 @@ function main() {
   const md = getPageMarkdown();
   const html = marked(md);
   renderContent(html);
+  initRouter();
 }
 
 main();
