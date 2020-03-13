@@ -5,8 +5,19 @@ const config = require('./../config');
 const Reader = require('./../server/lib/reader');
 const router = new Router();
 
+function getPageConfig() {
+  const pageConfig = {
+    srcSite: config.srcSite,
+    srcDev: config.srcDev,
+    books: config.books,
+  }
+  return JSON.stringify(pageConfig);
+}
+
+
 // TODO
 router.get('/favicon.ico', (ctx, next) => {
+  ctx.set('cache-control', `public, max-age=${24 * 60 * 60}`);
   ctx.body = '';
 });
 
@@ -15,8 +26,9 @@ router.get('/', async (ctx, next) => {
   const reader = new Reader({ bookDir });
   const result = reader.getReadme();
   await ctx.render('index', {
-    title: 'my-title',
+    title: config.name,
     content: result.content,
+    pageConfig: getPageConfig(),
   });
 });
 
@@ -40,8 +52,9 @@ function loopRouterGet(count) {
         const bookPagePath = ctxPath.replace(`/${bookName}/`, '/');
         const result = reader.getPage(bookPagePath);
         await ctx.render('index', {
-          title: 'my-title',
+          title: config.name,
           content: result.content,
+          pageConfig: getPageConfig(),
         });
       });
     }

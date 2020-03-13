@@ -1,5 +1,21 @@
 const textDomId = '#J_PageMarkdown';
 const contentId = '#J_PageContent';
+const configId = '#J_PageConfig';
+
+
+function getPageConfig() {
+  const $textarea = document.querySelector(configId);
+  let config = {}
+  if ($textarea) {
+    let text = $textarea.innerHTML;
+    try {
+      config = JSON.parse(text);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  return config;
+}
 
 function getPageMarkdown() {
   const $textarea = document.querySelector(textDomId);
@@ -30,5 +46,6 @@ function parseLazyImage(html) {
 
 export {
   getPageMarkdown,
+  getPageConfig,
   renderContent,
 }
