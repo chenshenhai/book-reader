@@ -51,7 +51,9 @@ function registerPathListener(callback) {
 
 function isInnerPageUrl(url) {
   let result = false;
-  if (url.startsWith('//') || url.startsWith('https://') || url.startsWith('http://')) {
+  if (/^\/[0-9a-zA-Z\_\-]{1,}/.test(url)) {
+    result = true;
+  } else if (url.startsWith('//') || url.startsWith('https://') || url.startsWith('http://')) {
     let baseUrl = url.replace(/^https\:\/\//, '').replace(/^http\:\/\//, '').replace(/\/\//, '').replace(/^www./);
     baseUrl = baseUrl.split('?')[0] || '';
     const itemList = baseUrl.split('/');
