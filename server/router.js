@@ -15,7 +15,7 @@ const paramCount = 6;
 function loopRouterGet(count) {
   const limit = 10;
   config.books.forEach((bookName) => {
-    for (let i = 1; i < count; i ++) {
+    for (let i = 0; i < count; i ++) {
       if (count > limit) {
         break;
       }
@@ -23,7 +23,10 @@ function loopRouterGet(count) {
       for (let j = 1; j < i + 1; j++) {
         paramKeys.push(`param${j}`);
       }
-      const pagePath = `/${bookName}/:${paramKeys.join('/:')}`;
+      let pagePath = `/${bookName}`;
+      if (Array.isArray(paramKeys) && paramKeys.length > 0) {
+        pagePath = `/${bookName}/:${paramKeys.join('/:')}`;
+      }
       router.get(pagePath, controller.renderPage);
     }
   });
