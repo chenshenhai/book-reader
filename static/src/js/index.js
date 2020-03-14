@@ -1,7 +1,7 @@
 import marked from 'marked';
 import highlight from 'highlight.js';
 import { getPageMarkdown, renderContent } from './lib/page';
-import { initRouter } from './lib/router';
+import { initRouter, registerPathListener } from './lib/router';
 import './../css/index.less';
 
 marked.setOptions({
@@ -24,6 +24,9 @@ function main() {
   const html = marked(md);
   renderContent(html);
   initRouter();
+  registerPathListener(() => {
+    console.log('change: ', window.location.pathname);
+  })
 }
 
 main();

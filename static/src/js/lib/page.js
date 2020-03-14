@@ -22,6 +22,10 @@ function getPageMarkdown() {
   let text = '';
   if ($textarea) {
     text = $textarea.innerHTML;
+    text = text.trim();
+    if (!(text && text.length > 0)) {
+      text = '# 404 Not Found!'
+    }
   }
   return text;
 }
@@ -29,7 +33,6 @@ function getPageMarkdown() {
 function renderContent(html) {
   const $content = document.querySelector(contentId);
   if ($content) {
-    console.log('xxxx======');
     html = parseLazyImage(html);
     $content.innerHTML = html;
   }
