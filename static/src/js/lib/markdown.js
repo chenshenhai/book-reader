@@ -1,13 +1,10 @@
 import marked from 'marked';
 import highlight from 'highlight.js';
 
-
 const mdRender = new marked.Renderer();
 
-// link(string href, string title, string text)
-// image(string href, string title, string text)
 mdRender.link = function (href, title, text) {
-  return `<a href="${href}" title="${title || ''}">${text || ''}</a>`;
+  return `<a data-inner-page-path="Y" href="${href}" title="${title || ''}">${text || ''}</a>`;
 }
 mdRender.image = function (href, title, text) {
   // return `<img src="${href}" title="${title || ''}" alt="${text || ''}"/>`;

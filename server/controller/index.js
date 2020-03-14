@@ -27,7 +27,7 @@ const controller = {
   },
 
   async renderPage(ctx, next) {
-    const ctxPath = ctx.path.replace(/^\//g, '').replace(/[\.]{2,}/ig, '');
+    const ctxPath = ctx.path.replace(/^\//g, '').replace(/\/$/g, '').replace(/[\.]{2,}/ig, '');
     const pathParams = ctxPath.split('/');
     const bookName = pathParams[0] || '';
     const bookDir = path.join(config.baseDir, bookName);
