@@ -1,8 +1,10 @@
 import { getPageConfig } from './page';
 const config = getPageConfig();
+const regSrcBaseUrl = RegExp(`^${config.srcSite}\/${config.srcDev}`, 'i');
 
-function parseToInnerUrl(url) {
-  
+function parseToInnerPath(url) {
+  let pagePath = url.replace(/^https\:\/\//, '').replace(/^http\:\/\//, '').replace(/^\/\//, '').replace(/^www./).replace(regSrcBaseUrl, '');
+  return pagePath;
 }
 
 function isInnerPageUrl(url) {
@@ -26,5 +28,6 @@ function isInnerPageUrl(url) {
 }
 
 export {
-  isInnerPageUrl
+  isInnerPageUrl,
+  parseToInnerPath,
 }

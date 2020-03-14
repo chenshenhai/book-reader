@@ -1,18 +1,9 @@
-import { getPageConfig } from './page';
-import { isInnerPageUrl } from './url';
+import { isInnerPageUrl, parseToInnerPath } from './url';
 
 let hasInitedRouter = false;
 let hasInitedProxyLink = false;
 let hasInitedHistoryListener = false;
 let hasRegisteredPathChange = false;
-
-const config = getPageConfig();
-const regSrcBaseUrl = RegExp(`^${config.srcSite}\/${config.srcDev}`, 'i');
-
-function getUrlPath(url) {;
-  let pagePath = url.replace(/^https\:\/\//, '').replace(/^http\:\/\//, '').replace(/^\/\//, '').replace(/^www./).replace(regSrcBaseUrl, '');
-  return pagePath;
-}
 
 function initHistoryListener() {
   if (hasInitedHistoryListener !== true) {
@@ -56,7 +47,7 @@ function linkEvent(a) {
   const href = a.getAttribute('href');
   const isInnerPage = isInnerPageUrl(href);
   if (isInnerPage === true) {
-    const path = getUrlPath(href);
+    const path = parseToInnerPath(href);
     history.pushState({
       path,
       timestamp: new Date().getTime(),
