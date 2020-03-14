@@ -27,12 +27,17 @@ const controller = {
   },
 
   async renderPage(ctx, next) {
-    const ctxPath = ctx.path.replace(/[\.]{2,}/ig, '');
+    const ctxPath = ctx.path.replace(/^\//g, '').replace(/[\.]{2,}/ig, '');
     const pathParams = ctxPath.split('/');
     const bookName = pathParams[0] || '';
     const bookDir = path.join(config.baseDir, bookName);
     const reader = new Reader({ bookDir });
-    const bookPagePath = ctxPath.replace(`/${bookName}/`, '/');
+    pathParams.shift();
+
+    let bookPagePath = 'README';
+    if (pathParams.length > 0) {
+      bookPagePath = pathParams.join('/');
+    }
     const result = reader.getPage(bookPagePath);
     await ctx.render('index', {
       title: config.name,
