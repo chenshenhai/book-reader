@@ -27,7 +27,6 @@ function initHistoryListener() {
     };
     history.pushState = watcher('pushState');
     history.replaceState = watcher('replaceState');
-
     hasInitedHistoryListener = true;
   } else {
     console.warn('initHistoryListener: has inited!');
@@ -40,6 +39,9 @@ function registerPathListener(callback) {
       callback();
     })
     window.addEventListener('replaceState', () => {
+      callback();
+    })
+    window.addEventListener('popstate', function(event) {
       callback();
     })
   } else {
