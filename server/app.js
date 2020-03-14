@@ -2,7 +2,7 @@
 const path = require('path');
 const Koa = require('koa');
 const render = require('koa-ejs');
-const koaStatic = require('./middlewares/static');
+const koaStatic = require('./middleware/static');
 const config = require('./../config');
 const router = require('./router');
 const app = new Koa();
