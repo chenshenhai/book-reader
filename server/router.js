@@ -1,19 +1,7 @@
-
-const path = require('path');
 const Router = require('@koa/router');
 const config = require('./../config');
-const Reader = require('./../server/lib/reader');
+const controller = require('./controller/index');
 const router = new Router();
-
-function getPageConfig() {
-  const pageConfig = {
-    srcSite: config.srcSite,
-    srcDev: config.srcDev,
-    books: config.books,
-  }
-  return JSON.stringify(pageConfig);
-}
-
 
 // TODO
 router.get('/favicon.ico', (ctx, next) => {
@@ -21,16 +9,7 @@ router.get('/favicon.ico', (ctx, next) => {
   ctx.body = '';
 });
 
-router.get('/', async (ctx, next) => {
-  const bookDir = path.join(config.baseDir, config.books[0] || '');
-  const reader = new Reader({ bookDir });
-  const result = reader.getReadme();
-  await ctx.render('index', {
-    title: config.name,
-    content: result.content,
-    pageConfig: getPageConfig(),
-  });
-});
+router.get('/', controller.renderHome);
 
 const paramCount = 6;
 function loopRouterGet(count) {
@@ -45,22 +24,10 @@ function loopRouterGet(count) {
         paramKeys.push(`param${j}`);
       }
       const pagePath = `/${bookName}/:${paramKeys.join('/:')}`;
-      router.get(pagePath, async (ctx, next) => {
-        const ctxPath = ctx.path.replace(/[\.]{2,}/ig, '');
-        const bookDir = path.join(config.baseDir, bookName);
-        const reader = new Reader({ bookDir });
-        const bookPagePath = ctxPath.replace(`/${bookName}/`, '/');
-        const result = reader.getPage(bookPagePath);
-        await ctx.render('index', {
-          title: config.name,
-          content: result.content,
-          pageConfig: getPageConfig(),
-        });
-      });
+      router.get(pagePath, controller.renderPage);
     }
   });
 }
-
 loopRouterGet(paramCount);
 
 
