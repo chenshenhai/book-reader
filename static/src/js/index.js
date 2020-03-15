@@ -10,10 +10,10 @@ function main() {
   initRouter();
   registerPathListener((params = {}) => {
     const { nextPagePath, prevPagePath } = params;
-    flushPage(nextPagePath, prevPagePath)
+    flushPage(nextPagePath, prevPagePath);
   })
 }
 
 main();
 
-console.log('hello world 444');
+console.log('hello world!');

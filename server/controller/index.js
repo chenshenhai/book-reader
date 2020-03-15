@@ -44,7 +44,23 @@ const controller = {
       content: result.content,
       pageConfig: getPageConfig(),
     });
-  }
+  },
+
+  async apiPage(ctx, next) {
+    const ctxPath = ctx.path.replace(/^\/api/g, '').replace(/\/$/g, '').replace(/[\.]{2,}/ig, '');
+    const pathParams = ctxPath.split('/');
+    const bookName = pathParams[0] || '';
+    const bookDir = path.join(config.baseDir, bookName);
+    const reader = new Reader({ bookDir });
+    pathParams.shift();
+
+    let bookPagePath = 'README';
+    if (pathParams.length > 0) {
+      bookPagePath = pathParams.join('/');
+    }
+    const result = reader.getPage(bookPagePath);
+    ctx.body = result;
+  },
 }
 
 

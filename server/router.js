@@ -3,6 +3,7 @@ const config = require('./../config');
 const controller = require('./controller/index');
 const router = new Router();
 
+
 // TODO
 router.get('/favicon.ico', (ctx, next) => {
   ctx.set('cache-control', `public, max-age=${24 * 60 * 60}`);
@@ -28,6 +29,7 @@ function loopRouterGet(count) {
         pagePath = `/${bookName}/:${paramKeys.join('/:')}`;
       }
       router.get(pagePath, controller.renderPage);
+      router.get(`/api${pagePath}`, controller.apiPage);
     }
   });
 }

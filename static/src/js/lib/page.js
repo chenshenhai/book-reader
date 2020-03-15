@@ -38,7 +38,7 @@ function renderContent(html) {
 }
 
 function flushPage(nextPagePath, prevPagePath) {
-  console.log(nextPagePath, prevPagePath)
+  console.log(nextPagePath, prevPagePath);
 }
 
 export {
