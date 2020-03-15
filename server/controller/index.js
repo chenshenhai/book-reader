@@ -18,12 +18,13 @@ const controller = {
   async renderHome(ctx, next) {
     const bookDir = path.join(config.baseDir, config.books[0] || '');
     const reader = new Reader({ bookDir });
-    const result = reader.getReadme();
+    const readmeRs = reader.getReadme();
+    const summaryRs = reader.getSummary();
     await ctx.render('index', {
       title: config.name,
-      content: result.data.content,
-      summary: result.data.summary,
-      sider: result.data.sider,
+      content: readmeRs.data,
+      summary: summaryRs.data,
+      sider: '',
       pageConfig: getPageConfig(),
     });
   },
@@ -45,7 +46,7 @@ const controller = {
       title: config.name,
       content: result.data.content,
       summary: result.data.summary,
-      sider: result.data.sider,
+      sider: '',
       pageConfig: getPageConfig(),
     });
   },

@@ -45,8 +45,8 @@ class Reader {
     const result = {
       success: pageRes.success,
       data: {
-        content: pageRes.data.content,
-        summary: summaryRes.data.content,
+        content: pageRes.data,
+        summary: summaryRes.data,
       }
     }
     return result;
@@ -59,10 +59,7 @@ class Reader {
     };
     if (fs.existsSync(filePath) === true) {
       if (fs.statSync(filePath).isFile() === true) {
-        result.data = {
-          content: fs.readFileSync(filePath, { encoding: 'utf8' }),
-          summary: null,
-        };
+        result.data = fs.readFileSync(filePath, { encoding: 'utf8' });
         result.success = true;
       }
     }
