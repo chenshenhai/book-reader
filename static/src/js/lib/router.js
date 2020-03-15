@@ -25,16 +25,30 @@ function initHistoryListener() {
   }
 }
 
+
+let prevPagePath = null;
+let nextPagePath = null;
+function resetPagePath() {
+  prevPagePath = nextPagePath;
+  nextPagePath = window.location.pathname;
+  return {
+    prevPagePath,
+    nextPagePath,
+  }
+}
 function registerPathListener(callback) {
   if (hasRegisteredPathChange !== true) {
     window.addEventListener('pushState', () => {
-      callback();
+      const params = resetPagePath();
+      callback(params);
     })
     window.addEventListener('replaceState', () => {
-      callback();
+      const params = resetPagePath();
+      callback(params);
     })
     window.addEventListener('popstate', function(event) {
-      callback();
+      const params = resetPagePath();
+      callback(params);
     })
   } else {
     console.warn('registerPathListener: has inited!');

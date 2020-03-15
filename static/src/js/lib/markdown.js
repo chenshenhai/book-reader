@@ -9,7 +9,6 @@ mdRender.link = function (href, title, text) {
   return `<a data-inner-page-path="Y" href="${href}" title="${title || ''}">${text || ''}</a>`;
 }
 mdRender.image = function (src, title, text) {
-  // return `<img src="${href}" title="${title || ''}" alt="${text || ''}"/>`;
   return `
   <div data-image-lazy-src="${src}" title="${title || ''}" alt="${text || ''}">
     ${imageSVG}

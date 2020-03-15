@@ -37,8 +37,13 @@ function renderContent(html) {
   }
 }
 
+function flushPage(nextPagePath, prevPagePath) {
+  console.log(nextPagePath, prevPagePath)
+}
+
 export {
   getPageMarkdown,
   getPageConfig,
   renderContent,
+  flushPage,
 }
