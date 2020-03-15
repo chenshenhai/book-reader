@@ -21,7 +21,8 @@ const controller = {
     const result = reader.getReadme();
     await ctx.render('index', {
       title: config.name,
-      content: result.content,
+      content: result.data.content,
+      summary: result.data.summary,
       pageConfig: getPageConfig(),
     });
   },
@@ -38,10 +39,11 @@ const controller = {
     if (pathParams.length > 0) {
       bookPagePath = pathParams.join('/');
     }
-    const result = reader.getPage(bookPagePath);
+    const result = reader.getPage(bookPagePath, { summary: true });
     await ctx.render('index', {
       title: config.name,
-      content: result.content,
+      content: result.data.content,
+      summary: result.data.summary,
       pageConfig: getPageConfig(),
     });
   },
@@ -50,19 +52,14 @@ const controller = {
     const ctxPath = ctx.path.replace(/^\/api\//g, '').replace(/\/$/g, '').replace(/[\.]{2,}/ig, '');
     const pathParams = ctxPath.split('/');
     const bookName = pathParams[0] || '';
-
-    console.log('pathParams =', pathParams);
-
     const bookDir = path.join(config.baseDir, bookName);
     const reader = new Reader({ bookDir });
     pathParams.shift();
-
     let bookPagePath = 'README';
     if (pathParams.length > 0) {
       bookPagePath = pathParams.join('/');
     }
-    console.log('bookPagePath =', bookPagePath);
-    const result = reader.getPage(bookPagePath);
+    const result = reader.getPage(bookPagePath, { summary: ctx.query.summary === true });
     ctx.body = result;
   },
 }

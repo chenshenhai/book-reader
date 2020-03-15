@@ -1,10 +1,13 @@
-const textDomId = '#J_PageMarkdown';
-const contentId = '#J_PageContent';
-const configId = '#J_PageConfig';
+const dataContentId = '#J_DataContent';
+const dataConfigId = '#J_DataConfig';
+
+const pageContentId = '#J_PageContent';
+const pageSummaryId = '#J_PageSummary';
+const pageSiderId = '#J_PageSider';
 
 
 function getPageConfig() {
-  const $textarea = document.querySelector(configId);
+  const $textarea = document.querySelector(dataConfigId);
   let config = {}
   if ($textarea) {
     let text = $textarea.innerHTML;
@@ -18,7 +21,7 @@ function getPageConfig() {
 }
 
 function getPageMarkdown() {
-  const $textarea = document.querySelector(textDomId);
+  const $textarea = document.querySelector(dataContentId);
   let text = '';
   if ($textarea) {
     text = $textarea.innerHTML;
@@ -31,14 +34,27 @@ function getPageMarkdown() {
 }
 
 function renderContent(html) {
-  const $content = document.querySelector(contentId);
+  const $content = document.querySelector(pageContentId);
   if ($content) {
     $content.innerHTML = html;
   }
 }
 
-function flushPage(nextPagePath, prevPagePath) {
+function flushPage(nextPagePath, prevPagePath = '') {
   console.log(nextPagePath, prevPagePath);
+  const nextPaths = nextPagePath.replace(/^\//, '').replace(/\/$/, '').split('/');
+  const prevPaths = prevPagePath.replace(/^\//, '').replace(/\/$/, '').split('/');
+  const params = {};
+  if (nextPaths[0] === prevPaths[0]) {
+    params.summary = false;
+  }
+  fetch(`/api${nextPagePath}`, params).then((response) => {
+    return response.json();
+  }).then((json) => {
+    console.log(json);
+  }).catch((err) => {
+    console.log(err);
+  });
 }
 
 export {

@@ -34,11 +34,22 @@ class Reader {
     return reuslt;
   }
 
-  getPage(pagePath) {
+  getPage(pagePath, opts = {}) {
     pagePath = pagePath.replace(/[\.]{2,}/ig, '');
     const filePath = path.join(this.__opts.bookDir, `${pagePath}.md`);
-    const reuslt = this.__getFile(filePath);
-    return reuslt;
+    let summaryRes = { success: false, data: { content: null, summary: null } };
+    if (opts && opts.summary === true) {
+      summaryRes = this.getSummary()
+    }
+    const pageRes = this.__getFile(filePath);
+    const result = {
+      success: pageRes.success,
+      data: {
+        content: pageRes.data.content,
+        summary: summaryRes.data.content,
+      }
+    }
+    return result;
   }
 
   __getFile(filePath) {
@@ -48,7 +59,10 @@ class Reader {
     };
     if (fs.existsSync(filePath) === true) {
       if (fs.statSync(filePath).isFile() === true) {
-        result.content = fs.readFileSync(filePath, { encoding: 'utf8' });
+        result.data = {
+          content: fs.readFileSync(filePath, { encoding: 'utf8' }),
+          summary: null,
+        };
         result.success = true;
       }
     }
