@@ -1,10 +1,11 @@
-import { getPageMarkdown, renderContent, flushPage } from './lib/page';
+import { getPageContent } from './lib/data';
+import { renderContent, flushPage } from './lib/page';
 import { initRouter, registerPathListener } from './lib/router';
 import { compile } from './lib/markdown';
 import './../css/index.less';
 
 function main() {
-  const md = getPageMarkdown();
+  const md = getPageContent();
   const html = compile(md);
   renderContent(html);
   initRouter();
