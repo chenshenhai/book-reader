@@ -64,7 +64,7 @@ const controller = {
     if (pathParams.length > 0) {
       bookPagePath = pathParams.join('/');
     }
-    const result = reader.getPage(bookPagePath, { summary: ctx.query.summary === true });
+    const result = reader.getPage(bookPagePath, { summary: ctx.query.summary === 'true' });
     ctx.body = result;
   },
 }

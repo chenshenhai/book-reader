@@ -37,9 +37,9 @@ class Reader {
   getPage(pagePath, opts = {}) {
     pagePath = pagePath.replace(/[\.]{2,}/ig, '');
     const filePath = path.join(this.__opts.bookDir, `${pagePath}.md`);
-    let summaryRes = { success: false, data: { content: null, summary: null } };
+    let summaryRes = { success: false, data: null };
     if (opts && opts.summary === true) {
-      summaryRes = this.getSummary()
+      summaryRes = this.getSummary();
     }
     const pageRes = this.__getFile(filePath);
     const result = {
