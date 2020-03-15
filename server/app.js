@@ -18,7 +18,7 @@ render(app, {
   root: path.join(__dirname, 'view'),
   layout: 'template',
   viewExt: 'html',
-  cache: false,
+  cache: true,
   // debug: true
 });
 app.use(koaStatic(

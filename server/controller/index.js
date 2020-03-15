@@ -2,7 +2,7 @@ const path = require('path');
 const Router = require('@koa/router');
 const config = require('./../../config');
 const Reader = require('./../lib/reader');
-const router = new Router();
+const timestamp = new Date().getTime();
 
 function getPageConfig() {
   const pageConfig = {
@@ -26,6 +26,7 @@ const controller = {
       summary: summaryRs.data,
       sider: '',
       pageConfig: getPageConfig(),
+      timestamp,
     });
   },
 
@@ -48,6 +49,7 @@ const controller = {
       summary: result.data.summary,
       sider: '',
       pageConfig: getPageConfig(),
+      timestamp,
     });
   },
 
