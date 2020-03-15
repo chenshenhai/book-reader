@@ -1,13 +1,14 @@
 import { getPageContent } from './lib/data';
-import { renderContent, flushPage } from './lib/page';
+import { renderPage, flushPage } from './lib/page';
 import { initRouter, registerPathListener } from './lib/router';
 import { compile } from './lib/markdown';
 import './../css/index.less';
 
 function main() {
   const md = getPageContent();
-  const html = compile(md);
-  renderContent(html);
+  renderPage({
+    content: md,
+  });
   initRouter();
   registerPathListener((params = {}) => {
     const { nextPagePath, prevPagePath } = params;

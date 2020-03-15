@@ -3,27 +3,55 @@
 @import "./github-md-style-dark.less";
 
 body {
-  background: #f0f0f0;
   margin: 0;
   padding: 0;
   font-size: 14px;
   line-height: 24px;
+  background: #ffffff;
+  // background: #f0f0f0;
   // color: #333333;
 }
 
-.page-container {
-  min-width: 320px;
-  max-width: 720px;
-  min-height: 640px;
-  margin: 20px auto;
-  padding: 40px;
-  padding-top: 10px;
-  background: #ffffff;
-  word-break: break-all;
-  box-sizing: border-box;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.23);
 
-  @media screen and (max-width: 375px)  {
-    padding: 16px;
+
+.page-container {
+  position: relative;
+  padding: 20px 0px;
+
+  .page-content {
+    min-width: 320px;
+    max-width: 720px;
+    min-height: 640px;
+    margin: auto;
+    padding: 40px;
+    padding-top: 10px;
+    word-break: break-all;
+    box-sizing: border-box;
+    // background: #ffffff;
+    // box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.20);
+
+    @media screen and (max-width: 375px)  {
+      padding: 16px;
+    }
+  }
+
+  .page-summary {
+    position: fixed;
+    top: 20px;
+    right: calc(50% + 360px + 20px);
+    bottom: 20px;
+    width: 240px;
+    // background: #ffffff;
+    // box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.20);
+  }
+  .page-sider {
+    position: fixed;
+    top: 20px;
+    left: calc(50% + 360px + 20px);
+    bottom: 20px;
+    width: 240px;
+    // background: #ffffff;
+    // box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.20);
   }
 }
+

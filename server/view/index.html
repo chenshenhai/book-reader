@@ -6,15 +6,21 @@
 <textarea id="J_DataSummary" style="display: none;">
   <%= summary %>
 </textarea>
+<textarea id="J_DataSider" style="display: none;">
+  <%= sider %>
+</textarea>
 <textarea id="J_DataConfig" style="display: none;">
   <%= pageConfig %>
 </textarea>
 
+
 <div class="page-container">
   <!-- <div class="page-header"></div> -->
+  <div class="page-summary" id="J_PageSummary"></div>
   <div class="page-content" id="J_PageContent">
     Loading...
   </div>
+  <div class="page-sider" id="J_PageSider"></div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.8.0/marked.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>

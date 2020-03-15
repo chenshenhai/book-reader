@@ -23,6 +23,7 @@ const controller = {
       title: config.name,
       content: result.data.content,
       summary: result.data.summary,
+      sider: result.data.sider,
       pageConfig: getPageConfig(),
     });
   },
@@ -44,6 +45,7 @@ const controller = {
       title: config.name,
       content: result.data.content,
       summary: result.data.summary,
+      sider: result.data.sider,
       pageConfig: getPageConfig(),
     });
   },
