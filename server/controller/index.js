@@ -4,11 +4,12 @@ const config = require('./../../config');
 const Reader = require('./../lib/reader');
 const timestamp = new Date().getTime();
 
-function getPageConfig() {
+function getPageConfig(currentBook = '') {
   const pageConfig = {
     srcSite: config.srcSite,
     srcDev: config.srcDev,
     books: config.books,
+    currentBook,
   }
   return JSON.stringify(pageConfig);
 }
@@ -25,7 +26,7 @@ const controller = {
       content: readmeRs.data,
       summary: summaryRs.data,
       sider: '',
-      pageConfig: getPageConfig(),
+      pageConfig: getPageConfig(config.books[0]),
       timestamp,
     });
   },
@@ -48,7 +49,7 @@ const controller = {
       content: result.data.content,
       summary: result.data.summary,
       sider: '',
-      pageConfig: getPageConfig(),
+      pageConfig: getPageConfig(bookName),
       timestamp,
     });
   },

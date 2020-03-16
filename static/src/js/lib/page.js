@@ -4,7 +4,7 @@ const pageContentId = '#J_PageContent';
 const pageSummaryId = '#J_PageSummary';
 const pageSiderId = '#J_PageSider';
 
-function renderContent(md = '') {
+function renderContent(md = '', config = {}) {
   const $content = document.querySelector(pageContentId);
   if ($content) {
     const html = compile(`${md || ''}`);
@@ -12,17 +12,21 @@ function renderContent(md = '') {
   }
 }
 
-function renderSummary(md = '') {
+function renderSummary(md = '', config = {}) {
   const $summary = document.querySelector(pageSummaryId);
   if ($summary) {
     const html = compile(`${md || ''}`);
     const temp = document.createElement('div');
     temp.innerHTML = html;
-    const links = document.createElement('a[data-inner-page-path="Y"]');
 
-    // TODO
+    const links = temp.querySelectorAll('a[data-inner-page-path="Y"]');
     for (let i = 0; i<links.length; i++) {
       const link = links[i];
+      let href = link.getAttribute('href');
+      if (typeof href === 'string' && href) {
+        href = href.replace(/\.md$/, '');
+        link.setAttribute('href', `/${config.currentBook || ''}/${href}`)
+      }
     }
 
     const uls = temp.children;
@@ -40,7 +44,7 @@ function renderSummary(md = '') {
   }
 }
 
-function renderSider(md = '') {
+function renderSider(md = '', config = {}) {
   const $sider = document.querySelector(pageSiderId);
   if ($sider) {
     const html = compile(`${md || ''}`);
@@ -49,10 +53,10 @@ function renderSider(md = '') {
 }
 
 
-function renderPage(data = { content: '', summary: '', sider: '' }) {
-  renderContent(data.content);
-  renderSummary(data.summary);
-  renderSider(data.sider);
+function renderPage(data = { content: '', summary: '', sider: '', config: {},}) {
+  renderContent(data.content, data.config);
+  renderSummary(data.summary, data.config);
+  renderSider(data.sider, data.config);
 }
 
 
