@@ -16,7 +16,27 @@ function renderSummary(md = '') {
   const $summary = document.querySelector(pageSummaryId);
   if ($summary) {
     const html = compile(`${md || ''}`);
-    $summary.innerHTML = html;
+    const temp = document.createElement('div');
+    temp.innerHTML = html;
+    const links = document.createElement('a[data-inner-page-path="Y"]');
+
+    // TODO
+    for (let i = 0; i<links.length; i++) {
+      const link = links[i];
+    }
+
+    const uls = temp.children;
+    const list = [];
+    if (uls && uls.length > 0) {
+      for (let i = 0; i<uls.length; i++) {
+        const ul = uls[i];
+        if (ul.tagName === 'UL') {
+          list.push(`<ul>${ul.innerHTML}</ul>`);
+        }
+      }
+    }
+    const str = list.join(' ');
+    $summary.innerHTML = str;
   }
 }
 
