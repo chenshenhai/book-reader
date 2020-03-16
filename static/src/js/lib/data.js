@@ -1,5 +1,6 @@
 // import url from './url';
 const dataContentId = '#J_DataContent';
+const dataSummaryId = '#J_DataSummary';
 const dataConfigId = '#J_DataConfig';
 
 
@@ -31,7 +32,31 @@ function getPageContent() {
 }
 
 
+function getPageSummary() {
+  const $textarea = document.querySelector(dataSummaryId);
+  let text = '';
+  if ($textarea) {
+    text = $textarea.innerHTML;
+    text = text.trim();
+  }
+  return text;
+}
+
+
+function getPageData() {
+  const config = getPageConfig();
+  const content = getPageContent();
+  const summary = getPageSummary();
+  return {
+    config,
+    content,
+    summary,
+  }
+}
+
 export {
+  getPageData,
   getPageConfig,
-  getPageContent
+  getPageContent,
+  getPageSummary,
 }
