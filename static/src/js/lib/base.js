@@ -49,16 +49,6 @@ class ViewBase {
     }
     let _data = data;
     const { dataType } = this._opts;
-    if (dataType === 'json' && typeof data === 'string') {
-      _data = {};
-      try {
-        _data = JSON.parse(data);
-      } catch (err) {
-        console.log(err);
-      }
-    } else {
-      _data = `${data || ''}`;
-    }
     this._data = _data;
     let _text = this._data;
     if (dataType === 'json') {

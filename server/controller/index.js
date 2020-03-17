@@ -4,8 +4,8 @@ const config = require('./../../config');
 const Reader = require('./../lib/reader');
 const timestamp = new Date().getTime();
 
-function getPageConfig(currentBook = '', config = {}) {
-  const { stringify } = config;
+function getPageConfig(currentBook = '', opts = {}) {
+  const { stringify } = opts;
   const pageConfig = {
     srcSite: config.srcSite,
     srcDev: config.srcDev,
