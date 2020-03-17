@@ -29,7 +29,7 @@ const viewSummary = new ViewBase({
       let href = link.getAttribute('href');
       if (typeof href === 'string' && href) {
         href = href.replace(/\.md$/, '');
-        link.setAttribute('href', `/${config.currentBook || ''}/${href}`)
+        link.setAttribute('href', `${href}`)
       }
     }
 

@@ -38,21 +38,21 @@ function isInnerPageUrl(url) {
   return result;
 }
 
-// function mergeParams(params) {
-//   let keys = [];
-//   if (params) {
-//     keys = Object.keys(params);
-//   }
-//   let strList = [];
-//   keys.forEach((key) => {
-//     strList.push(`${key}=${params[key]}`);
-//   });
-//   const result = strList.join('&');
-//   return result;
-// }
+function mergeParams(params) {
+  let keys = [];
+  if (params) {
+    keys = Object.keys(params);
+  }
+  let strList = [];
+  keys.forEach((key) => {
+    strList.push(`${key}=${params[key]}`);
+  });
+  const result = strList.join('&');
+  return result;
+}
 
 export {
   isInnerPageUrl,
   parseToInnerPath,
-  // mergeParams,
+  mergeParams,
 }
