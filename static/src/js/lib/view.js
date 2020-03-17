@@ -1,10 +1,7 @@
 import { ViewBase } from './base';
+import { viewConfig } from './config';
 import { compile } from './markdown';
 
-const viewConfig = new ViewBase({
-  dataId: '#J_DataConfig',
-  dataType: 'json',
-});
 
 const viewContent = new ViewBase({
   dataId: '#J_DataContent',
