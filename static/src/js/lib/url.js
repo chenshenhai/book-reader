@@ -1,6 +1,6 @@
-import { getPageConfig } from './data';
+import { viewConfig } from './view';
 
-const config = getPageConfig();
+const config = viewConfig.getData();
 const regSrcBaseUrl = RegExp(`^${config.srcSite}\/${config.srcDev}`, 'i');
 
 function parseToInnerPath(url) {
