@@ -30,8 +30,16 @@ function renderPage(data = { content: null, summary: null, sider: null, config: 
   renderContent(data.content);
   renderSummary(data.summary);
   renderSider(data.sider);
+  pageScrollTop();
 }
 
+
+function pageScrollTop() {
+  const $body = document.querySelector('body');
+  if ($body) {
+    $body.scrollTop = 0;
+  }
+}
 
 
 function flushPage(nextPagePath = '', prevPagePath = '') {
