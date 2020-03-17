@@ -31,7 +31,7 @@ const controller = {
       content: readmeRs.data,
       summary: summaryRs.data,
       sider: '',
-      config: getPageConfig(config.books[0]),
+      config: getPageConfig(config.books[0], { stringify: true }),
       timestamp,
     });
   },
@@ -54,7 +54,7 @@ const controller = {
       content: result.data.content,
       summary: result.data.summary,
       sider: '',
-      pageConfig: getPageConfig(bookName, { stringify: true }),
+      config: getPageConfig(bookName, { stringify: true }),
       timestamp,
     });
   },
