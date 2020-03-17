@@ -11,6 +11,16 @@ const viewContent = new ViewBase({
   viewId: '#J_ViewContent',
   dataType: 'string',
   compiler(md) {
+    const html = compile(`${md || ''}`);
+    return html;
+  }
+});
+
+const viewSummary = new ViewBase({
+  dataId: '#J_DataSummary',
+  viewId: '#J_ViewSummary',
+  dataType: 'string',
+  compiler(md) {
     const config = viewConfig.getData();
     const html = compile(`${md || ''}`);
     const temp = document.createElement('div');
@@ -38,16 +48,6 @@ const viewContent = new ViewBase({
     }
     const str = list.join(' ');
     return str;
-  }
-});
-
-const viewSummary = new ViewBase({
-  dataId: '#J_DataSummary',
-  viewId: '#J_ViewSummary',
-  dataType: 'string',
-  compiler(md) {
-    const html = compile(`${md || ''}`);
-    return html;
   }
 });
 
