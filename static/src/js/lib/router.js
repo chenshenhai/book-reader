@@ -59,15 +59,17 @@ function registerPathListener(callback) {
 
 function linkEvent(a) {
   const href = a.getAttribute('href');
-  const isInnerPage = isInnerPageUrl(href);
-  if (isInnerPage === true) {
-    const path = parseToInnerPath(href);
-    history.pushState({
-      path,
-      timestamp: new Date().getTime(),
-    }, '', path);
-  } else {
-    window.open(href);
+  if (typeof href === 'string' && href) {
+    const isInnerPage = isInnerPageUrl(href);
+    if (isInnerPage === true) {
+      const path = parseToInnerPath(href);
+      history.pushState({
+        path,
+        timestamp: new Date().getTime(),
+      }, '', path);
+    } else {
+      window.open(href);
+    }
   }
 }
 

@@ -12,7 +12,11 @@ function renderContent(md = '', config = {}) {
   }
 }
 
-function renderSummary(md = '', config = {}) {
+function renderSummary(md, config = {}) {
+  if (md === null) {
+    return;
+  }
+  md = md || '';
   const $summary = document.querySelector(pageSummaryId);
   if ($summary) {
     const html = compile(`${md || ''}`);
