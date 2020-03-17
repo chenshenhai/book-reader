@@ -26,10 +26,6 @@ function isInnerPageUrl(url) {
   const config = viewConfig.getData();
   let result = false;
   let bookName = config.currentBook || '';
-  // TODO
-  if (window.location.host.indexOf('127.0.0.1') < 0) {
-    return false;
-  }
   if (url.startsWith('./') === true && url.startsWith(`./${bookName}/`) !== true) {
     result = true;
   } else if (/^\/[0-9a-zA-Z\_\-]{1,}/.test(url)) {
