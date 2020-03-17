@@ -4,14 +4,19 @@ const config = require('./../../config');
 const Reader = require('./../lib/reader');
 const timestamp = new Date().getTime();
 
-function getPageConfig(currentBook = '') {
+function getPageConfig(currentBook = '', config = {}) {
+  const { stringify } = config;
   const pageConfig = {
     srcSite: config.srcSite,
     srcDev: config.srcDev,
     books: config.books,
     currentBook,
   }
-  return JSON.stringify(pageConfig);
+  let result = pageConfig
+  if (stringify === true) {
+    result = JSON.stringify(pageConfig);
+  }
+  return result;
 }
 
 const controller = {
@@ -26,7 +31,7 @@ const controller = {
       content: readmeRs.data,
       summary: summaryRs.data,
       sider: '',
-      pageConfig: getPageConfig(config.books[0]),
+      config: getPageConfig(config.books[0]),
       timestamp,
     });
   },
@@ -49,7 +54,7 @@ const controller = {
       content: result.data.content,
       summary: result.data.summary,
       sider: '',
-      pageConfig: getPageConfig(bookName),
+      pageConfig: getPageConfig(bookName, { stringify: true }),
       timestamp,
     });
   },
@@ -66,7 +71,17 @@ const controller = {
       bookPagePath = pathParams.join('/');
     }
     const result = reader.getPage(bookPagePath, { summary: ctx.query.summary === 'true' });
-    ctx.body = result;
+    const apiResult = {
+      success: result.success,
+      data: {
+        content: result.data.content,
+        summary: result.data.summary,
+        sider: null,
+        config: getPageConfig(bookName, {}),
+        timestamp,
+      }
+    }
+    ctx.body = apiResult;
   },
 }
 

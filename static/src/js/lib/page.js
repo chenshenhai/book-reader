@@ -24,7 +24,7 @@ function renderSider(data) {
 
 function renderPage(data = { content: null, summary: null, sider: null, config: null,}) {
   if (data.config !== null) {
-    viewConfig.setData(config);
+    viewConfig.setData(data.config);
   }
   renderContent(data.content);
   renderSummary(data.summary);

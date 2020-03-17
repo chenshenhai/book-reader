@@ -43,6 +43,7 @@ class ViewBase {
   }
 
   setData(data) {
+    const $textarea = this._$textarea;
     if (!$textarea) {
       return;
     }
@@ -63,7 +64,7 @@ class ViewBase {
     if (dataType === 'json') {
       _text = JSON.stringify(this._data);
     }
-    this._$textarea.innerHTML = `${_text}`;
+    $textarea.innerHTML = `${_text}`;
   }
 
   render() {
