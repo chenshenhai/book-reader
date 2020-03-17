@@ -28,6 +28,7 @@ const controller = {
     const summaryRs = reader.getSummary();
     await ctx.render('index', {
       title: config.name,
+      headInjects: config.pageHeadInjects.join('\r\n'),
       content: readmeRs.data,
       summary: summaryRs.data,
       sider: '',
@@ -51,6 +52,7 @@ const controller = {
     const result = reader.getPage(bookPagePath, { summary: true });
     await ctx.render('index', {
       title: config.name,
+      headInjects: config.pageHeadInjects.join('\r\n'),
       content: result.data.content,
       summary: result.data.summary,
       sider: '',

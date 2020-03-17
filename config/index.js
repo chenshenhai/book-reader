@@ -5,5 +5,6 @@ module.exports = {
   main: "",
   srcSite: '',
   srcDev: '',
-  books: []
+  books: [],
+  pageHeadInjects: []
 }
