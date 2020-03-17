@@ -53,7 +53,7 @@ function parseLazyImage(str) {
 }
 
 function compile(md) {
-  md = decodeHTML(md);
+  // md = decodeHTML(md);
   md = decodeHTML(md);
   let html = marked(md);
   html = parseLazyImage(html);
