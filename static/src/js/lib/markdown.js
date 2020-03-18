@@ -12,7 +12,7 @@ mdRender.link = function (href, title, text) {
 }
 mdRender.image = function (src, title, text) {
   return `
-  <div data-image-lazy-src="${src}" title="${title || ''}" alt="${text || ''}">
+  <div data-image-lazy-src="${src}" data-image-lazy-status="none" title="${title || ''}" alt="${text || ''}">
     ${imageSVG}
   </div>`;
 }
@@ -56,7 +56,7 @@ function compile(md) {
   // md = decodeHTML(md);
   md = decodeHTML(md);
   let html = marked(md);
-  html = parseLazyImage(html);
+  // html = parseLazyImage(html);
   return html;
 }
 

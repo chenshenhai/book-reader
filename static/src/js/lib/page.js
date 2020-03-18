@@ -51,15 +51,10 @@ function flushPage(nextPagePath = '', prevPagePath = '') {
   }
 
   const params = {};
-  console.log(config.currentBook, nextPaths[0] );
   if (config.currentBook !== nextPaths[0]) {
     params.summary = true;
   }
   
-  // if (nextPagePath === '/') {
-  //   nextPagePath = `/${config.books[0]}`;
-  // }
-  // fetch(`/api${nextPagePath}?${url.mergeParams(params)}`, params).then((response) => {
   fetch(`/api${nextPagePath}?${mergeParams(params)}`).then((response) => {
     return response.json();
   }).then((json = {}) => {
