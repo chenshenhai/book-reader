@@ -1,8 +1,10 @@
 const path = require('path');
 const Router = require('@koa/router');
+const send = require('koa-send')
 const config = require('./../../config');
 const Reader = require('./../lib/reader');
 const timestamp = new Date().getTime();
+const maxAge = 365 * 24 * 60 * 60 * 1000
 
 function getPageConfig(currentBook = '', opts = {}) {
   const { stringify } = opts;
@@ -41,24 +43,32 @@ const controller = {
     const ctxPath = ctx.path.replace(/^\//g, '').replace(/\/$/g, '').replace(/[\.]{2,}/ig, '');
     const pathParams = ctxPath.split('/');
     const bookName = pathParams[0] || '';
-    const bookDir = path.join(config.baseDir, bookName);
-    const reader = new Reader({ bookDir });
-    pathParams.shift();
-
-    let bookPagePath = 'README';
-    if (pathParams.length > 0) {
-      bookPagePath = pathParams.join('/');
+    if (/\.(jpg|png|jpeg)$/i.test(ctx.path)) {
+      ctx.set('cache-control', `public, max-age=${maxAge}`);
+      await send(ctx, ctx.path, {
+        root: path.join(config.baseDir)
+      })
+    } else {
+      const bookDir = path.join(config.baseDir, bookName);
+      const reader = new Reader({ bookDir });
+      pathParams.shift();
+  
+      let bookPagePath = 'README';
+      if (pathParams.length > 0) {
+        bookPagePath = pathParams.join('/');
+      }
+      const result = reader.getPage(bookPagePath, { summary: true });
+      await ctx.render('index', {
+        title: config.name,
+        headInjects: config.pageHeadInjects.join('\r\n'),
+        content: result.data.content,
+        summary: result.data.summary,
+        sider: '',
+        config: getPageConfig(bookName, { stringify: true }),
+        timestamp,
+      });
     }
-    const result = reader.getPage(bookPagePath, { summary: true });
-    await ctx.render('index', {
-      title: config.name,
-      headInjects: config.pageHeadInjects.join('\r\n'),
-      content: result.data.content,
-      summary: result.data.summary,
-      sider: '',
-      config: getPageConfig(bookName, { stringify: true }),
-      timestamp,
-    });
+    
   },
 
   async apiPage(ctx, next) {
@@ -85,6 +95,7 @@ const controller = {
     }
     ctx.body = apiResult;
   },
+
 }
 
 
