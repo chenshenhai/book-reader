@@ -17,7 +17,9 @@ function initSider() {
         <img src="${config.avatar}" />
       </div>
       <div class="sider-github">
-        ${config.contact.github}
+        <a class="github-link" href="${config.contact.github}" target="_blank">
+          ${config.srcDev}
+        </a>
       </div>
       <div class="sider-wechat">
         <img src="${config.contact.wechat}" />
