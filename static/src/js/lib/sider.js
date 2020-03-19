@@ -22,7 +22,12 @@ function initSider() {
         </a>
       </div>
       <div class="sider-wechat">
-        <img src="${config.contact.wechat}" />
+        <div class="wechat-title" >
+          微信公众号
+        </div>
+        <div class="wechat-qrcode">
+          <img src="${config.contact.wechat}" />
+        </div>
       </div>
     </div>
   `;
