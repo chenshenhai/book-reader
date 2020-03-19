@@ -9,6 +9,7 @@ const maxAge = 365 * 24 * 60 * 60 * 1000
 function getPageConfig(currentBook = '', opts = {}) {
   const { stringify } = opts;
   const pageConfig = {
+    name: config.name,
     srcSite: config.srcSite,
     srcDev: config.srcDev,
     books: config.books,

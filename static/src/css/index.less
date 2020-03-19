@@ -31,6 +31,33 @@ body {
     width: 100%;
     box-shadow: 0 0 0.375rem 0 rgba(0, 0, 0, 0.2);
     background: #ffffff;
+
+    .header-container {
+      width: 680px;
+      height: 40px;
+      margin: 0 auto;
+      line-height: 40px;
+
+      .header-home-btn {
+        float: left;
+        height: 40px;
+        display: block;
+        overflow: hidden;
+        color: #333333;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      .header-home-icon {
+        width: 40px;
+        height: 40px;
+        padding-top: 4px;
+        display: block;
+        box-sizing: border-box;
+        float: left;
+        margin-right: 16px;
+      }
+    }
   }
 
   .page-content {
@@ -56,6 +83,7 @@ body {
 
   .page-summary {
     position: absolute;
+    z-index: 1;
     top: 50px;
     right: calc(50% + 340px + 10px);
     // bottom: 40px;
@@ -96,6 +124,12 @@ body {
       margin-left: 10px;
       margin-right: 10px;
     }
+
+    .header-container {
+      width: auto;
+    }
   }
+
+  
 }
 

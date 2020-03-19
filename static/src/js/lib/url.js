@@ -28,7 +28,10 @@ function isInnerPageUrl(url) {
   const config = viewConfig.getData();
   let result = false;
   let bookName = config.currentBook || '';
-  if (url.startsWith('./') === true && url.startsWith(`./${bookName}/`) !== true) {
+  
+  if (url === '/') {
+    result = true;
+  } else if (url.startsWith('./') === true && url.startsWith(`./${bookName}/`) !== true) {
     result = true;
   } else if (/^\/[0-9a-zA-Z\_\-]{1,}/.test(url)) {
     result = true;
