@@ -1,4 +1,4 @@
-import { viewConfig, viewSummary, viewContent, viewSider } from './view';
+import { viewConfig, viewSummary, viewContent } from './view';
 import { mergeParams } from './url';
 // TODO
 import Toast from './../util/toast';
@@ -18,21 +18,13 @@ function renderSummary(data) {
   viewSummary.render();
 }
 
-function renderSider(data) {
-  if (data !== null) {
-    viewSider.setData(data);
-  }
-  viewSider.render();
-}
 
-
-function renderPage(data = { content: null, summary: null, sider: null, config: null,}) {
+function renderPage(data = { content: null, summary: null, config: null,}) {
   if (data.config !== null) {
     viewConfig.setData(data.config);
   }
   renderContent(data.content);
   renderSummary(data.summary);
-  renderSider(data.sider);
   pageScrollTop();
 }
 

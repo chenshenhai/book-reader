@@ -1,5 +1,5 @@
 const path = require('path');
-const Router = require('@koa/router');
+// const Router = require('@koa/router');
 const send = require('koa-send')
 const config = require('./../../config');
 const Reader = require('./../lib/reader');
@@ -14,6 +14,11 @@ function getPageConfig(currentBook = '', opts = {}) {
     srcDev: config.srcDev,
     books: config.books,
     currentBook,
+    avatar: config.avatar,
+    contact: {
+      github: config.contact.github,
+      wechat: config.contact.wechat,
+    }
   }
   let result = pageConfig
   if (stringify === true) {

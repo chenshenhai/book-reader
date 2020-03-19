@@ -6,5 +6,10 @@ module.exports = {
   srcSite: '',
   srcDev: '',
   books: [],
-  pageHeadInjects: []
+  pageHeadInjects: [],
+  avatar: '',
+  contact: {
+    github: '',
+    wechat: '',
+  }
 }
