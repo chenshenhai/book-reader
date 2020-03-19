@@ -1,7 +1,12 @@
 import './toast.less';
 
 class Toast {
-  constructor() {
+  /**
+   * @param {*} opts 
+   * opts.type {string} "loading"
+   */
+  constructor(opts = {}) {
+    this.__opts = opts;
     this.__uuid = Math.random().toString(26).substr(2);
     this.__$container = undefined;
     this.__$text = undefined;
@@ -10,6 +15,9 @@ class Toast {
   show(text) {
     if (this.__$text) {
       this.__$text.innerText = text;
+      if (this.__$container) {
+        this.__$container.classList.add('toast-status-show')
+      }
       return;
     }
     this.__render();
@@ -17,23 +25,27 @@ class Toast {
   }
 
   hide() {
-
+    if (this.__$container) {
+      this.__$container.classList.remove('toast-status-show')
+    }
   }
 
   __render() {
     if (this.__$container) {
       return;
     }
+    const opts = this.__opts || {};
+    const { type = ''} = opts;
     const domId = `J_Toast_${this.__uuid}`;
     const textId = `J_ToastText_${this.__uuid}`;
     const $body = document.querySelector('body');
     const html = `
-      <div class="page-util-toast" id="${domId}">
+      <div class="page-util-toast toast-status-show" id="${domId}">
         <div class="page-util-toast-mask"></div>
         <div class="page-util-toast-container" >
           <div class="page-util-toast-content" >
             <div class="page-util-toast-main" >
-              <div class="page-util-toast-text" id="${textId}"></div>
+              <div class="page-util-toast-text toast-type-${type}" id="${textId}"></div>
             </div>
           </div>
         </div>

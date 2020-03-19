@@ -1,5 +1,8 @@
 import { viewConfig, viewSummary, viewContent, viewSider } from './view';
 import { mergeParams } from './url';
+// TODO
+import Toast from './../util/toast';
+const toast = new Toast({ type: 'loading' });
 
 function renderContent(data) {
   if (data !== null) {
@@ -55,12 +58,15 @@ function flushPage(nextPagePath = '', prevPagePath = '') {
     params.summary = true;
   }
   
+  toast.show('Loading ...');
   fetch(`/api${nextPagePath}?${mergeParams(params)}`).then((response) => {
     return response.json();
   }).then((json = {}) => {
     console.log(json);
+    toast.hide();
     renderPage(json.data);
   }).catch((err) => {
+    toast.hide();
     console.log(err);
   });
 }

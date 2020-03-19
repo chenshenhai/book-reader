@@ -55,6 +55,7 @@ class ViewBase {
       _text = JSON.stringify(this._data);
     }
     $textarea.innerHTML = `${_text}`;
+
   }
 
   render() {
@@ -64,6 +65,12 @@ class ViewBase {
     const { compiler } = this._opts;
     const html = compiler(this._data);
     this._$view.innerHTML = html;
+
+    if (typeof html === 'string' && !html.trim()) {
+      this._$view.classList.add('page-box-hide');
+    } else {
+      this._$view.classList.remove('page-box-hide');
+    }
   }
 }
 
