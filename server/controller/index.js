@@ -49,7 +49,7 @@ const controller = {
     const ctxPath = ctx.path.replace(/^\//g, '').replace(/\/$/g, '').replace(/[\.]{2,}/ig, '');
     const pathParams = ctxPath.split('/');
     const bookName = pathParams[0] || '';
-    if (/\.(jpg|png|jpeg)$/i.test(ctx.path)) {
+    if (/\.(jpg|png|jpeg|gif)$/i.test(ctx.path)) {
       ctx.set('cache-control', `public, max-age=${maxAge}`);
       await send(ctx, ctx.path, {
         root: path.join(config.baseDir)
