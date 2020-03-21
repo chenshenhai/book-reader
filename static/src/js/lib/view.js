@@ -48,8 +48,18 @@ const viewSummary = new ViewBase({
   }
 });
 
+const viewSider = new ViewBase({
+  dataId: '#J_DataSider',
+  viewId: '#J_ViewSider',
+  dataType: 'string',
+  compiler(md) {
+    return md;
+  }
+});
+
 export {
   viewConfig,
   viewContent,
   viewSummary,
+  viewSider,
 }

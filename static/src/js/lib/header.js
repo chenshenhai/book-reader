@@ -1,4 +1,4 @@
-import { viewConfig } from './view';
+import { viewConfig, viewSummary, viewSider } from './view';
 
 const headerId = 'J_ViewHeader';
 const leftId = 'J_ViewHeader_LeftBtnId';
@@ -28,10 +28,10 @@ function initHeader() {
   const $btnRight = $header.querySelector(`#${rightId}`);
 
   $btnLeft.addEventListener('click', () => {
-    console.log('btnLeft');
+    viewSummary.show();
   });
   $btnRight.addEventListener('click', () => {
-    console.log('btnRight');
+    viewSider.show();
   });
 
   hasInitedHeader = true;

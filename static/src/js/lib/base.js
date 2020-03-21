@@ -63,7 +63,22 @@ class ViewBase {
       _text = JSON.stringify(this._data);
     }
     $textarea.innerHTML = `${_text}`;
+  }
 
+  show() {
+    if (!this._$view) {
+      return;
+    }
+    this._$view.classList.remove('view-hide');
+    this._$view.classList.add('view-show');
+  }
+
+  hide() {
+    if (!this._$view) {
+      return;
+    }
+    this._$view.classList.remove('view-show');
+    this._$view.classList.add('view-hide');
   }
 
   render() {

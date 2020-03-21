@@ -34,9 +34,38 @@
 
     .page-summary {
       display: none;
+
+      &.view-show {
+        display: block;
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 200;
+        margin-bottom: 0;
+      }
+
+      &.view-hide {
+        display: none;
+      }
     }
     .page-sider {
       display: none;
+
+      &.view-show {
+        display: block;
+        position: fixed;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 200;
+        margin-bottom: 0;
+        left: unset;
+      }
+
+      &.view-hide {
+        display: none;
+      }
     }
     
   }
