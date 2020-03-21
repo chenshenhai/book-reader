@@ -1,3 +1,11 @@
+
+function decodeHTML(html) {
+  const div = document.createElement('div');
+  div.innerHTML = html;
+  const text = div.innerText;
+  return text;
+}
+
 class ViewBase {
   /**
    * @param {object} opts
@@ -32,7 +40,7 @@ class ViewBase {
     const { dataType } = this._opts;
     
     if ($textarea) {
-      let data = $textarea.innerHTML;
+      let data = decodeHTML($textarea.innerHTML);
       if (dataType === 'json') {
         data = JSON.parse(data);
       } else {
