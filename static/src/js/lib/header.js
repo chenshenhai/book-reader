@@ -1,6 +1,8 @@
 import { viewConfig } from './view';
 
 const headerId = 'J_ViewHeader';
+const leftId = 'J_ViewHeader_LeftBtnId';
+const rightId = 'J_ViewHeader_RightBtnId';
 let hasInitedHeader = false;
 
 
@@ -13,14 +15,24 @@ function initHeader() {
   const $header = document.querySelector(`#${headerId}`);
   $header.innerHTML = `
     <div class="header-container">
-      <span class="summary-nav-btn"></span>
+      <span class="left-nav-btn" id="${leftId}"></span>
       <a class="header-home-btn" href="/" data-inner-page-path="Y">
         <span class="header-home-icon"></span>
         <span>${config.name}</span>
       </a>
-      <span class="sider-nav-btn"></span>
+      <span class="right-nav-btn" id="${rightId}"></span>
     </div>
   `;
+
+  const $btnLeft = $header.querySelector(`#${leftId}`);
+  const $btnRight = $header.querySelector(`#${rightId}`);
+
+  $btnLeft.addEventListener('click', () => {
+    console.log('btnLeft');
+  });
+  $btnRight.addEventListener('click', () => {
+    console.log('btnRight');
+  });
 
   hasInitedHeader = true;
 }
