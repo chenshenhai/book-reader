@@ -12,10 +12,13 @@ mdRender.link = function (href, title, text) {
   return `<a data-inner-page-path="Y" href="${href}" title="${title || ''}">${text || ''}</a>`;
 }
 mdRender.image = function (src, title, text) {
-  const config = viewConfig.getData();
-  const currentBook = config.currentBook;
+  
   if (src.startsWith('./') === true) {
-    src = src.replace(/^\.\//, `/${currentBook}/`);
+    if (window.location.pathname === '/') {
+      const config = viewConfig.getData();
+      const currentBook = config.currentBook;
+      src = src.replace(/^\.\//, `/${currentBook}/`);
+    }
   }
   return `
   <div data-image-lazy-src="${src}" data-image-lazy-status="none" title="${title || ''}" alt="${text || ''}">
