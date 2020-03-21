@@ -25,6 +25,7 @@
     }
 
     .header-home-icon {
+      position: relative;
       width: 40px;
       height: 40px;
       padding-top: 4px;
@@ -32,6 +33,67 @@
       box-sizing: border-box;
       float: left;
       margin-right: 8px;
+      background: #0084ff;
+
+      &::before {
+        position: absolute;
+        display: block;
+        content: "";
+        width: 40px;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        background: url('data:image/svg+xml;charset=utf-8,<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg viewBox="0 0 1047 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3270" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="28"><defs><style type="text/css"></style></defs><path d="M624.764761 785.994377q-6.717901-43.186504-19.194002-83.014058t-29.750703-79.175258l80.614808 0q18.234302 43.186504 31.190253 83.493908t22.552952 78.695408l-85.413308 0zM-3.8388 1015.362699q94.050609-204.41612 125.720712-453.938144l76.776007 0q-9.597001 126.680412-35.988754 239.445173t-72.457357 214.492971l-94.050609 0zM103.64761 242.804124q-13.435801-54.702905-35.988754-108.925961t-53.263355-110.845361l85.413308 0q48.944705 80.614808 89.252109 219.771321l-85.413308 0zM108.446111 291.748828q47.985005 78.695408 90.211809 220.731022l-85.413308 0q-27.831303-110.365511-90.211809-220.731022l85.413308 0zM431.865042 152.592315q-61.420806 66.219306-197.698219 108.446111l0-54.702905q143.955014-66.219306 192.899719-206.33552l94.050609 0q-8.637301 27.831303-19.673852 50.864105t-24.472352 43.186504l543.190253 0 0 58.541706-588.296157 0zM939.546392 534.552952l102.68791 0 0 62.380506-102.68791 0 0 211.134021 71.017807 0 0 63.340206-71.017807 0 0 22.073102q0 130.519213-148.753515 130.519213l-117.083411 0 0-53.743205 103.64761 0q76.776007 0 76.776007-76.776007l0-22.073102-377.162137 0q-152.592315 4.7985-148.753515-139.156514l0-135.317713-85.413308 0 0-62.380506 85.413308 0 0-269.675726 611.32896 0 0 269.675726zM854.133083 596.933458l-440.502343 0 0 121.881912q-4.7985 95.010309 90.211809 89.252109l350.290534 0 0-211.134021zM854.133083 323.418932l-440.502343 0 0 211.134021 440.502343 0 0-211.134021zM616.12746 512.47985q-2.8791-27.831303-13.915651-66.699157t-31.190253-90.691659l75.816307 0q40.307404 68.138707 54.702905 157.390815l-85.413308 0z" p-id="3271" fill="%23ffffff"></path></svg>');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 32px;
+      }
+    }
+  }
+
+  .summary-nav-btn {
+    // display: none;
+    position: relative;
+    display: block;
+    width: 40px;
+    height: 40px;
+    float: left;
+
+    &::before {
+      position: absolute;
+      display: block;
+      content: "";
+      width: 40px;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      background: url('data:image/svg+xml;charset=utf-8,<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1584804765326" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7962" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><defs><style type="text/css"></style></defs><path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zM400 646c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zM904 160H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM904 792H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM142.4 642.1L298.7 519c4.5-3.5 4.5-10.3 0-13.9L142.4 381.9c-5.8-4.6-14.4-0.5-14.4 6.9v246.3c0 7.4 8.5 11.6 14.4 7z" p-id="7963" fill="%23666666"></path></svg>');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 24px;
+    }
+  }
+  .sider-nav-btn {
+    // display: none;
+    position: relative;
+    display: block;
+    width: 40px;
+    height: 40px;
+    float: right;
+   
+
+    &::before {
+      position: absolute;
+      display: block;
+      content: "";
+      width: 40px;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      background: url('data:image/svg+xml;charset=utf-8,<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1584805229166" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8196" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><defs><style type="text/css"></style></defs><path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zM400 646c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zM904 160H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM904 792H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4 0.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1c-4.5 3.5-4.5 10.3 0 13.8z" p-id="8197" fill="%230084ff"></path></svg>');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 24px;
     }
   }
 }
