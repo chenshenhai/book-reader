@@ -1,13 +1,17 @@
+const path = require('path');
 const Router = require('@koa/router');
+const send = require('koa-send');
 const config = require('./../config');
 const controller = require('./controller/index');
 const router = new Router();
 
 
 // TODO
-router.get('/favicon.ico', (ctx, next) => {
-  ctx.set('cache-control', `public, max-age=${24 * 60 * 60}`);
-  ctx.body = '';
+router.get('/favicon.ico', async (ctx, next) => {
+  ctx.set('cache-control', `public, max-age=${24 * 60 * 60 * 1000}`);
+  await send(ctx, '/favicon.ico', {
+    root: path.join(__dirname, 'public')
+  })
 });
 
 router.get('/', controller.renderHome);
