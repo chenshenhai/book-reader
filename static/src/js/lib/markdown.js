@@ -14,10 +14,15 @@ mdRender.link = function (href, title, text) {
 mdRender.image = function (src, title, text) {
   
   if (src.startsWith('./') === true) {
-    if (window.location.pathname === '/') {
-      const config = viewConfig.getData();
+    const pathname = window.location.pathname;
+    const config = viewConfig.getData();
+    if (pathname === '/') {
       const currentBook = config.currentBook;
       src = src.replace(/^\.\//, `/${currentBook}/`);
+    } else if (pathname === `/${config.currentBook || ''}/` || pathname === `/${config.currentBook || ''}`) {
+      if (src.startsWith(`/${config.currentBook || ''}/`) !== true) {
+        src = `/${config.currentBook || ''}/${src}`;
+      }
     }
   }
   return `
