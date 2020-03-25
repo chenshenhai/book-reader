@@ -10,15 +10,20 @@ const viewContent = new ViewBase({
   dataType: 'string',
   compiler(md) {
     const originUrl = getOriginGithubUrl();
-    const html = `
-    <div class="page-content-view">
-    ${(typeof originUrl === 'string' && originUrl) ? `
-      <a class="content-origin-link" href="${originUrl}" target="_blank">本文Github备份</a>
-    ` : '' }
-      <div>${compile(`${md || ''}`)}</div>
-    </div>
-    `;
-
+    const mdHtml = compile(`${md || ''}`);
+    let html = `
+      <div>
+        <h1>404: o(╯□╰)o</h1>
+      </div>`;
+    if (mdHtml) {
+      html = `
+      <div class="page-content-view">
+        ${(typeof originUrl === 'string' && originUrl) ? `
+          <a class="content-origin-link" href="${originUrl}" target="_blank">本文Github备份</a>
+        ` : '' }
+        <div>${mdHtml}</div>
+      </div>`;
+    }
     return html;
   }
 });
