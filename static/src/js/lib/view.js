@@ -1,6 +1,7 @@
 import { ViewBase } from './base';
 import { viewConfig } from './config';
 import { compile } from './markdown';
+import { getOriginGithubUrl } from './url';
 
 
 const viewContent = new ViewBase({
@@ -8,7 +9,16 @@ const viewContent = new ViewBase({
   viewId: '#J_ViewContent',
   dataType: 'string',
   compiler(md) {
-    const html = compile(`${md || ''}`);
+    const originUrl = getOriginGithubUrl();
+    const html = `
+    <div class="page-content-view">
+    ${(typeof originUrl === 'string' && originUrl) ? `
+      <a class="content-origin-link" href="${originUrl}" target="_blank">本文Github备份</a>
+    ` : '' }
+      <div>${compile(`${md || ''}`)}</div>
+    </div>
+    `;
+
     return html;
   }
 });

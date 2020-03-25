@@ -52,8 +52,26 @@ function mergeParams(params) {
   return result;
 }
 
+function getOriginGithubUrl() {
+  const config = viewConfig.getData();
+  let pathname = window.location.pathname.replace(/^\//, '');
+  const pathList = pathname.split('/');
+  const bookName = pathList.shift();
+  let result = null;
+  if (config.books.indexOf(bookName) >= 0) {
+    if (pathList.length === 0) {
+      pathname = `${bookName}/blob/master/README.md`;
+    } else if (pathList.length > 0) {
+      pathname = `${bookName}/blob/master/${pathList.join('/')}.md`;
+    }
+    result = `https://${config.srcSite}/${config.srcDev}/${pathname}`;
+  }
+  return result;
+}
+
 export {
   isInnerPageUrl,
   parseToInnerPath,
   mergeParams,
+  getOriginGithubUrl,
 }
