@@ -11,5 +11,6 @@ module.exports = {
   contact: {
     github: '',
     wechat: '',
-  }
+  },
+  issueUrl: '',
 }

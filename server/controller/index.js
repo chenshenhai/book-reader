@@ -18,7 +18,8 @@ function getPageConfig(currentBook = '', opts = {}) {
     contact: {
       github: config.contact.github,
       wechat: config.contact.wechat,
-    }
+    },
+    issueUrl: config.issueUrl || '',
   }
   let result = pageConfig
   if (stringify === true) {

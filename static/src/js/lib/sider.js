@@ -21,6 +21,11 @@ function initSider() {
           ${config.srcDev}
         </a>
       </div>
+      <div class="sider-issue">
+        <a class="issue-link" href="${config.issueUrl}" target="_blank">
+          反馈问题 >
+        </a>
+      </div>
       <div class="sider-wechat">
         <div class="wechat-title" >
           微信公众号
@@ -29,6 +34,7 @@ function initSider() {
           <img src="${config.contact.wechat}" />
         </div>
       </div>
+      
     </div>
   `;
 
