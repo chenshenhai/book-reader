@@ -4,11 +4,11 @@ extern crate actix_web;
 use std::{env, io};
 
 use actix_files as fs;
-use actix_session::{CookieSession, Session};
+use actix_session::{Session};
 use actix_utils::mpsc;
 use actix_web::http::{header, Method, StatusCode};
 use actix_web::{
-    error, guard, middleware, web, App, Error, HttpRequest, HttpResponse, HttpServer,
+    error, guard, web, App, Error, HttpRequest, HttpResponse, HttpServer,
     Result,
 };
 use bytes::Bytes;
@@ -71,10 +71,6 @@ async fn main() -> io::Result<()> {
 
     HttpServer::new(|| {
         App::new()
-            // cookie session middleware
-            .wrap(CookieSession::signed(&[0; 32]).secure(false))
-            // enable logger - always register actix-web Logger middleware last
-            .wrap(middleware::Logger::default())
             // register favicon
             .service(favicon)
             // register simple route, handle all methods

@@ -105,6 +105,7 @@ dist
 
 
 /config.js
+/config.json
 /books
 nohup.out
 
