@@ -107,3 +107,7 @@ dist
 /config.js
 /books
 nohup.out
+
+#Added by cargo
+
+/target
