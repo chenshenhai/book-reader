@@ -22,18 +22,7 @@ async fn favicon() -> Result<fs::NamedFile> {
 /// simple index handler
 #[get("/welcome")]
 async fn welcome(session: Session, req: HttpRequest) -> Result<HttpResponse> {
-    println!("{:?}", req);
-
-    // session
-    let mut counter = 1;
-    if let Some(count) = session.get::<i32>("counter")? {
-        println!("SESSION value: {}", count);
-        counter = count + 1;
-    }
-
-    // set counter to session
-    session.set("counter", counter)?;
-
+    // println!("{:?}", req);
     // response
     Ok(HttpResponse::build(StatusCode::OK)
         .content_type("text/html; charset=utf-8")
@@ -42,7 +31,7 @@ async fn welcome(session: Session, req: HttpRequest) -> Result<HttpResponse> {
 
 /// 404 handler
 async fn p404() -> Result<fs::NamedFile> {
-    Ok(fs::NamedFile::open("static/index.html")?.set_status_code(StatusCode::NOT_FOUND))
+    Ok(fs::NamedFile::open("static/404.html")?.set_status_code(StatusCode::NOT_FOUND))
 }
 
 /// response body
@@ -96,13 +85,6 @@ async fn main() -> io::Result<()> {
             }))
             // static files
             .service(fs::Files::new("/static", "static").show_files_listing())
-            // redirect
-            .service(web::resource("/").route(web::get().to(|req: HttpRequest| {
-                println!("{:?}", req);
-                HttpResponse::Found()
-                    .header(header::LOCATION, "static/index.html")
-                    .finish()
-            })))
             // default
             .default_service(
                 // 404 for GET request
