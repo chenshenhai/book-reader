@@ -4,9 +4,8 @@ extern crate actix_web;
 use std::{env, io};
 
 use actix_files as fs;
-use actix_session::{Session};
 use actix_utils::mpsc;
-use actix_web::http::{header, Method, StatusCode};
+use actix_web::http::{Method, StatusCode};
 use actix_web::{
     error, guard, web, App, Error, HttpRequest, HttpResponse, HttpServer,
     Result,
@@ -21,9 +20,7 @@ async fn favicon() -> Result<fs::NamedFile> {
 
 /// simple index handler
 #[get("/welcome")]
-async fn welcome(session: Session, req: HttpRequest) -> Result<HttpResponse> {
-    // println!("{:?}", req);
-    // response
+async fn welcome() -> Result<HttpResponse> {
     Ok(HttpResponse::build(StatusCode::OK)
         .content_type("text/html; charset=utf-8")
         .body(include_str!("../static/index.html")))
