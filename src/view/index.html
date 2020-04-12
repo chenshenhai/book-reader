@@ -1,12 +1,40 @@
-<!DOCTYPE html>
 <html>
+  <head>
+    <title>{{title}}</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="keywords" content="{{keywords}}">
+    <meta name="description" content="{{description}}">
 
-<head>
-    <title>{{name}} Example</title>
-</head>
+    {{headInjects}}
+  </head>
+  <body>
+    <link rel="stylesheet" href="/dist/css/index.css?_t={{timestamp}}" />
 
-<body>
-    <h1>{{name}} example</h1>
-    <p>This is an example of how to use {{name}} with Actix-Web.</p>
-</body>
+    <textarea id="J_DataContent" style="display: none;">
+      {{content}}
+    </textarea>
+    <textarea id="J_DataSummary" style="display: none;">
+      {{summary}}
+    </textarea>
+    <textarea id="J_DataSider" style="display: none;">
+      {{sider}}
+    </textarea>
+    <textarea id="J_DataConfig" style="display: none;">
+      {{config}}
+    </textarea>
+
+
+    <div class="page-container">
+      <div class="page-header" id="J_ViewHeader"></div>
+      <div class="page-summary" id="J_ViewSummary"></div>
+      <div class="page-content" id="J_ViewContent">
+        Loading...
+      </div>
+      <div class="page-sider" id="J_ViewSider"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.8.0/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+    <script src="/dist/js/index.js?_t=<%=timestamp%>"></script>
+  </body>
 </html>

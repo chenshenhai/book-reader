@@ -11,6 +11,7 @@ mod service;
 
 use actix_web::web;
 use actix_web::{App, HttpServer};
+use actix_files;
 use handlebars::Handlebars;
 use std::io;
 
@@ -30,6 +31,7 @@ async fn main() -> io::Result<()> {
     HttpServer::new(move || {
         App::new()
             .app_data(handlebars_ref.clone())
+            .service(actix_files::Files::new("/dist", "static/dist").show_files_listing())
             .service(service::index)
             .service(service::user)
     })
