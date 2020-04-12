@@ -41,9 +41,10 @@ async fn user(
 #[actix_rt::main]
 async fn main() -> io::Result<()> {
     let mut handlebars = Handlebars::new();
-
     let config = utils::config::read_config();
     println!("config = {:?}", config);
+    let port = config.port.to_string();
+    let addr = "127.0.0.1:".to_string() + &port;
 
     handlebars
         .register_templates_directory(".html", "./src/view/")
@@ -56,7 +57,7 @@ async fn main() -> io::Result<()> {
             .service(index)
             .service(user)
     })
-    .bind("127.0.0.1:5001")?
+    .bind(addr)?
     .run()
     .await
 }

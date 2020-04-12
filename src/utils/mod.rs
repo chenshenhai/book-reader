@@ -18,19 +18,22 @@ pub mod file {
 
 
 pub mod config {
+    use serde::{Deserialize, Serialize};
     use serde_json::{Result, Value};
 
-    // pub struct Config {
-    //     name: String,
-    // }
+    #[derive(Serialize, Deserialize, Debug)]
+    pub struct Config {
+        pub name: String,
+        pub port: u32,
+    }
 
-    pub fn read_config() -> Value {
+    pub fn read_config() -> Config {
         let mut path = "./config.json".to_string();
         if super::file::is_exist(&path) != true {
             path = "./config/index.json".to_string();
         }
         let content = super::file::read_file(&path);
-        let val: Value = serde_json::from_str(&content).unwrap();
+        let val: Config = serde_json::from_str(&content).unwrap();
         return val;
     }
     
