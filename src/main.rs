@@ -8,21 +8,21 @@ extern crate serde_json;
 
 mod utils;
 mod service;
+mod global;
 
+use std::io;
 use actix_web::web;
 use actix_web::{App, HttpServer};
 use actix_files;
 use handlebars::Handlebars;
-use std::io;
+// use self::global;
 
 #[actix_rt::main]
 async fn main() -> io::Result<()> {
     let mut handlebars = Handlebars::new();
-    let config = utils::config::read_config();
-    println!("config = {:?}", config);
-    let port = config.port.to_string();
+    let port = global::get_port();
     let addr = "127.0.0.1:".to_string() + &port;
-
+    println!("The server start at {:?}", addr);
     handlebars
         .register_templates_directory(".html", "./src/view/")
         .unwrap();

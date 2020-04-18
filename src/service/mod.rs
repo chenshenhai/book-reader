@@ -5,11 +5,12 @@ use handlebars::Handlebars;
 // Macro documentation can be found in the actix_web_codegen crate
 #[get("/")]
 pub async fn index(hb: web::Data<Handlebars<'_>>) -> HttpResponse {
+
     let data = json!({
-        "name": "Handlebars"
+        "name": "Handlebars",
+        "config": "{}"
     });
     let body = hb.render("index", &data).unwrap();
-
     HttpResponse::Ok().body(body)
 }
 
