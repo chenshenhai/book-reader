@@ -1,5 +1,6 @@
 use lazy_static::lazy_static;
 use std::collections::HashMap;
+use std::option::Option;
 
 use super::utils;
 
@@ -15,16 +16,25 @@ lazy_static! {
     };
 }
 
-pub fn get_port() -> String {
-    let value = CONFIG.get("port");
-    let mut port = "".to_string();
-    match value {
+fn get_some_str_value(opt: Option<&String>) -> String {
+    let mut value = "".to_string();
+    match opt {
         Some(val) => {
-            port = val.to_string();
+            value = val.to_string();
         }
-        None => {
-            
-        }
+        None => {}
     }
-    return port;
+    return value;
+}
+
+pub fn get_port() -> String {
+    let opt = CONFIG.get("port");
+    let value = self::get_some_str_value(opt);
+    return value;
+}
+
+pub fn get_name() -> String {
+    let opt = CONFIG.get("name");
+    let value = self::get_some_str_value(opt);
+    return value;
 }
