@@ -8,7 +8,7 @@ use super::global;
 pub async fn index(hb: web::Data<Handlebars<'_>>) -> HttpResponse {
 
     let data = json!({
-        "title": global::get_name(),
+        "title": global::get_config_name(),
         "description": "",
         "keywords": "",
         "headInjects": "",

@@ -23,9 +23,25 @@ pub mod config {
     // use serde_json::{Result, Value};
 
     #[derive(Serialize, Deserialize, Debug)]
+    pub struct ConfigContact {
+        pub github: String,
+        pub wechat: String,
+    }
+
+    #[derive(Serialize, Deserialize, Debug)]
     pub struct Config {
         pub name: String,
+        pub baseDir: String,
+        pub description: String,
+        pub keywords: String,
         pub port: u32,
+        pub srcSite: String,
+        pub srcDev: String,
+        pub books: Vec<String>,
+        pub pageHeadInjects: Vec<String>,
+        pub avatar: String,
+        pub contact: ConfigContact,
+        pub issueUrl: String,
     }
 
     pub fn read_config() -> Config {

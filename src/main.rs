@@ -20,7 +20,7 @@ use handlebars::Handlebars;
 #[actix_rt::main]
 async fn main() -> io::Result<()> {
     let mut handlebars = Handlebars::new();
-    let port = global::get_port();
+    let port = global::get_config_port();
     let addr = "127.0.0.1:".to_string() + &port;
     println!("The server start at {:?}", addr);
     handlebars
