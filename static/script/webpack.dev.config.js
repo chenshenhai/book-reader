@@ -6,7 +6,9 @@ const config = require('./webpack.base.config');
 
 // const prodMode = process.env.NODE_ENV === 'production';
 
-module.exports = merge(config, {
-  mode: 'development',
-  devtool: '#source-map'
-});
+module.exports = config.map((item) => {
+  return  merge(item, {
+    mode: 'development',
+    devtool: '#source-map'
+  });
+})
