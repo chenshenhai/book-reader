@@ -13,6 +13,9 @@ router.get('/favicon.ico', async (ctx, next) => {
     root: path.join(__dirname, 'public')
   })
 });
+router.get('/abs.txt', async (ctx, next) => {
+  ctx.body = config.abs || '';
+});
 
 router.get('/', controller.renderHome);
 

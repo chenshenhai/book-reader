@@ -40,6 +40,7 @@ const controller = {
       description: config.description,
       keywords: config.keywords,
       headInjects: config.pageHeadInjects.join('\r\n'),
+      pageFooterInjects: config.pageFooterInjects.join('\r\n'),
       content: readmeRs.data,
       summary: summaryRs.data,
       sider: '',

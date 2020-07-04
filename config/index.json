@@ -6,7 +6,9 @@
   "srcSite": "", 
   "srcDev": "", 
   "books": [ ], 
-  "pageHeadInjects": [ ], 
+  "pageHeadInjects": [ ],
+  "pageFooterInjects": [ ],
+  "abs": "", 
   "avatar": "", 
   "contact": {
     "github": "", 
