@@ -73,6 +73,7 @@ const controller = {
         description: config.description,
         keywords: config.keywords,
         headInjects: config.pageHeadInjects.join('\r\n'),
+        pageFooterInjects: config.pageFooterInjects.join('\r\n'),
         content: result.data.content,
         summary: result.data.summary,
         sider: '',
